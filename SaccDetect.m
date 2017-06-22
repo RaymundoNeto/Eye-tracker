@@ -1,5 +1,5 @@
-function varargout = SaccDetect(total_time, xpos, ypos,velx,vely,threshold,method)%, vmax, vmaxhor, vmaxver, ampl
-% This function calculates saccadic movements related parameter from data colecterd with an eye-tracker.
+function varargout = SaccDetect(total_time, xpos, ypos,velx,vely,threshold,method)
+% This function calculates saccadic movements related parameter from data collected with an eye-tracker.
 % Sintax:[saccStTime, saccEnTime, saccDur, ampl, vmax, vmaxhor,vmaxver]=...
 %           ...=SaccDetect(total_time, xpos, ypos,threshold)
 % Input:
@@ -84,6 +84,7 @@ elseif isequal(method,'vertical')
 end
 
 %% Exclude too short saccades 
+% I should make the amplitude threshold flexible for other setups!!!!!!!!!!!!!!!!
 killInd = abs(ampl) <= 83; % Saccades that are shorter than 2 degrees (currently 83 pixels on a setup with 1600x1200 screen resolution and participants 57 cm away from screen and screen width of 40 cm). 
 startInd(killInd)  = [];
 endInd(killInd)  = [];
