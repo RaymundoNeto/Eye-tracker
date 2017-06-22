@@ -1,2 +1,5 @@
 # Eye-tracker
-I'll keep all functions I've used from someone or created to analyze eye-tracker data in cognitive neuroscience experiments.
+
+These functions are used to analyze eye-tracker data. Some of these functions were created by me and others (a lot of them) were created by someone else. 
+
+I'll try also to keep a brief and updated description of what each function does. 
