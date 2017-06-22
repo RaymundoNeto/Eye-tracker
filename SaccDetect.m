@@ -22,8 +22,12 @@ function varargout = SaccDetect(total_time, xpos, ypos,velx,vely,threshold,metho
 %   vmax_hor - Maximum velocity of each saccadic movement in the X-axis.
 %   vmax_ver - Maximum velocity of each saccadic movement in the y-axis.
 
-% ToDo: exclude unrealistic saccades (too high peak velocities (!), too short
+% ToDo: 
+% - exclude unrealistic saccades (too high peak velocities (!), too short
 % saccades etc.), probably use acceleration-criterion
+% - include saccade amplitude criterion on input to make amplitude threshold 
+% compatible across experimental setups (screen res, participants distance 
+% from screen) and different measurement units (pixels, degrees visual angle).
 
 %% Initializing default values
 if ~exist('threshold','var')
