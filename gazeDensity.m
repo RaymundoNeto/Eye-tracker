@@ -60,7 +60,7 @@ for r = 1:length(radius)
     dist_gaze_fixation = sqrt(sum(diff_gaze_fixation.^2,2));        
     
     % Estimate how many points lie inside the circle with input radius
-    percentage_inside(r) = (sum(dist_gaze_fixation < radius_pix)/length(dist_gaze_fixation))*100;
+    percentage_inside(r) = (sum(dist_gaze_fixation < radius_pix)/length(dist_gaze_fixation))*100; %#ok<AGROW>
         
 end
 
