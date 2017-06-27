@@ -10,10 +10,18 @@ function gazeHeatmap(x,y,x_res,y_res,method)
 %   x_res: screen resolution on the x axis
 %   y_res: screen resolution on the y axis
 %   method: heatmap can be created simply using 'histogram' or estimating
-%   'kdensity'. The second method takes a lot of time.ga
+%   'kdensity'. The second methods takes a lot of time.
+%
+% Output: a gaze heatmap with a circle of 0.5 and 2 deg visual angle aroung
+% fixation cross. Colorbar unit is relative frequency of fixations in each
+% pixel.
+%
+% Author: Raymundo Machado de Azevedo Neto
+% Date created: 08 jun 2017
+% Last update: 27 jun 2017
 
 %% Initial variables
-hist_bin = 25;
+hist_bin = 1000;
 
 %% Check inputs
 
@@ -60,14 +68,16 @@ hold on
 
 % Plot gaze data estimating
 if isequal(method,'kdensity')
+    d.pdf = (d.pdf./sum(sum(d.pdf)))*100; % Convert density to relative frequency (%)
     imagesc(d.x(:),d.y(:),d.pdf);    
 elseif isequal(method,'histogram')
     [d.x d.y] = meshgrid(linspace(min(x),max(x),hist_bin),linspace(min(y),max(y),hist_bin));
+    d.pdf = (d.pdf./sum(sum(d.pdf)))*100; % Convert histogram to relative frequency (%)
     imagesc(d.x(:),d.y(:),d.pdf');
 end
 
 % Make axis evenly spaced
-set(gca,'YDir','normal')
+% set(gca,'YDir','normal') % Eye-link origin is at the left upper corner. Don't need to flip axis.
 axis image
 
 % Include colorbar
@@ -83,7 +93,8 @@ end
 
 % create dashed circle on fixation cross area
 x_c = 800; % Fixation cross center x
-y_c = 485; % Fixation cross center y
+% y_c = 485; % Fixation cross center y
+y_c = 715; % Fixation cross center y
 ang = 0:0.01:2*pi; % Angle to draw circle
 r = 11; % fixation cross radius
 r_2deg = 44; % @ degrees around fixation cross
@@ -94,5 +105,3 @@ yp_2deg = r_2deg*sin(ang); % y position along the circle 2 degrees visual angle
 plot(x_c+xp,y_c+yp,'--k','LineWidth',1)
 plot(x_c+xp_2deg,y_c+yp_2deg,'--k','LineWidth',1)
 hold off
-
-
