@@ -2,6 +2,24 @@ function gaze_density = gazeDensity(x,y,fix_center,radius,screen_dist,screen_wid
 
 % This function estimates the percentage of gaze data points acquired with
 % eye-tracker inside one(or many) circle(s).
+% Input: 
+%   x: gaze position on x axis in pixels
+%   y: gaze position on y axis in pixels
+%   fix_center: a matrix with fixation cross center x and y coordinates
+%   radius: it could be one or many radii around fixation cross center to
+%   estimate the density of gaze points around it. If more than one radii
+%   is provided, make sure to make it a matrix.
+%   screen_dist: distance (in cm) from screen where participants were positioned
+%   screen_widht: width (in cm) of screen where stimuli were presented
+%   screen_res_x: screen resolution (pixels) in the x axis.
+%   
+% Output:
+%   gaze_density: percentage of gaze points inside circle defined by the
+%   radii provided as input.
+%
+% Author: Raymundo Machado de Azevedo Neto, raymundo.neto@usp.br
+% Date created: 27 jun 2017
+% Last update: --
 
 %% Checking input
 % check if x and y are 1D vectors
